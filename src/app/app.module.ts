@@ -10,15 +10,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { MatCarouselModule } from '@ngbmodule/material-carousel';
-import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel'
+import {MatCardModule} from '@angular/material/card'
+import {MatListModule} from '@angular/material/list'
+// import { MatCarouselModule } from '@ngmodule/material-carousel';
+// import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel'
 // import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel'
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductListComponent } from './components/product-list/product-list.component';
+
+
+declare module "@angular/core" {
+  interface ModuleWithProviders<T = any> {
+    ngModule: Type<T>;
+    providers?: Provider[];
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +42,10 @@ import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel'
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatCarouselModule,
-  
+    MatCarouselModule.forRoot(),
+    FlexLayoutModule,
+    MatCardModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
