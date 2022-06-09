@@ -12,9 +12,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'
 import {MatListModule} from '@angular/material/list'
-// import { MatCarouselModule } from '@ngmodule/material-carousel';
-// import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel'
-// import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel'
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductListComponent } from './components/product-list/product-list.component';
