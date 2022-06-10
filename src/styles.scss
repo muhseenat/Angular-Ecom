@@ -2,3 +2,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::ng-deep .star{
+    padding: 0 5px !important;
+    font-size:20px !important;
+    color: hsl(60, 100%, 50%) !important;
+  ;
+  
+  }
