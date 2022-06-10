@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,13 +12,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'
 import {MatListModule} from '@angular/material/list'
 import {MatTabsModule} from '@angular/material/tabs'
-// import {MatFormsModule} from '@angular/material/form-field'
-import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -37,7 +39,8 @@ declare module "@angular/core" {
     FooterComponent,
     BannerComponent,
     ProductListComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,10 @@ declare module "@angular/core" {
     MatListModule,
     FormsModule,
     MatTabsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
