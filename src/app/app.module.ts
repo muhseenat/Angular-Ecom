@@ -21,7 +21,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import {MatInputModule} from '@angular/material/input';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -57,7 +58,9 @@ declare module "@angular/core" {
     MatTabsModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     
   ],
   providers: [],

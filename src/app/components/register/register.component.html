@@ -21,7 +21,7 @@
                       <mat-icon matSuffix>vpn_key</mat-icon>
 
                     </mat-form-field>
-                    <button mat-button color="primary">Login</button>
+                    <button type="submit" mat-button color="primary">Login</button>
                   </form>
           
             </mat-tab>
@@ -29,24 +29,30 @@
 
         <!-- Signup Form -->
             <mat-tab label="Signup"> 
-            <form class="example-form">
+            <form class="example-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input formControlName="userName"   matInput placeholder="Enter your name" >
+                    <mat-icon matSuffix>user</mat-icon>
+  
+                  </mat-form-field>
                 <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label> Email</mat-label>
-                  <input  type="email" matInput placeholder="Enter your Email" >
+                  <input formControlName="email"  type="email" matInput placeholder="Enter your Email" >
                   <mat-icon matSuffix>email</mat-icon>
 
                 </mat-form-field>
               
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput placeholder="Enter your Password">
+                    <input formControlName="password" type="password" matInput placeholder="Enter your Password">
                     <mat-icon matSuffix>vpn_key</mat-icon>
                   </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Confirm Password</mat-label>
                     <input type="cpassword" matInput placeholder="Enter your Confirm Password">
                   </mat-form-field>
-                <button mat-button color="primary">Signup</button>
+                <button type="submit" mat-button color="primary">Signup</button>
               </form>
             </mat-tab>
           </mat-tab-group>
