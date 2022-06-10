@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder,FormGroup } from '@angular/forms';
+import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,17 +12,23 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   signupForm!:FormGroup;
   loginForm!:FormGroup;
-  constructor(public formBuilder:FormBuilder,private http:HttpClient,private router:Router) { }
+  constructor(public formBuilder:FormBuilder,private http:HttpClient,
+    private router:Router,private _snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
+  let loginError:boolean=false;
+
     this.signupForm=this.formBuilder.group({
-      userName:[''],
-      email:[''],
-      password:['']
+      userName:['',Validators.required],
+      email:['',Validators.required],
+      password:['',Validators.required],
+      cpassword:['',Validators.required]
+      
     })
+    
     this.loginForm= this.formBuilder.group({
-      email:[''],
-      password:['']
+      email:['',Validators.required],
+      password:['',Validators.required]
     })
   }
 
@@ -30,9 +38,13 @@ export class RegisterComponent implements OnInit {
      alert("Succcessfully signup");
      console.log(this.signupForm.value);     
      this.signupForm.reset();
-     this.router.navigate(['home']);
+     this.router.navigate(['home']).then(()=>{
+      this._snackBar.open("Logged in succesfully", "Ok",{
+        duration:3000
+      });
+     });
    },err=>{
-     alert("Error")
+    this.openSnackBar("Something Went Wrong!!","Error")
    })
   }
 
@@ -44,14 +56,23 @@ export class RegisterComponent implements OnInit {
       return  user.email===this.loginForm.value.email && user.password===this.loginForm.value.password
       })
       if(userExist){
-        this.router.navigate(['home'])
+        this.router.navigate(['home']).then(()=>{
+          this._snackBar.open("Logged in succesfully", "Ok",{
+            duration:3000
+          })
+        })
       }else{
-        alert("User don't exist,please signup")
+        this.openSnackBar("User doesn't exist,Please signup","Ok")
       }
     },err=>{
-      alert("Something Occur i thin k it is an error")
+    this.openSnackBar("Something Went Wrong!!","Error")
     })
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
 }
 
 

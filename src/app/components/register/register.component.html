@@ -1,4 +1,4 @@
-<div class="container mt-5 " >
+<div  fxFlexFill fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="example-card mat-elevation-z4" >
         <mat-card-header>
           <mat-card-title>Login/Signup</mat-card-title>
@@ -14,14 +14,21 @@
                       <input formControlName="email"  type="email" matInput placeholder="Enter your Email">
                       <mat-icon matSuffix>email</mat-icon>
                     </mat-form-field>
-                  
+                    <mat-error
+                    *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
+                    Email is required
+                  </mat-error>
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Password</mat-label>
                       <input formControlName="password" type="password" matInput placeholder="Enter your Password">
                       <mat-icon matSuffix>vpn_key</mat-icon>
 
                     </mat-form-field>
-                    <button type="submit" mat-button color="primary">Login</button>
+                    <mat-error
+                    *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
+                    Password is required
+                  </mat-error>
+                    <button type="submit" mat-button color="primary" [disabled]="!loginForm.valid">Login</button>
                   </form>
           
             </mat-tab>
@@ -33,26 +40,43 @@
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Username</mat-label>
                     <input formControlName="userName"   matInput placeholder="Enter your name" >
-                    <mat-icon matSuffix>user</mat-icon>
-  
+                    <mat-icon matSuffix>group_add</mat-icon>
                   </mat-form-field>
+                  <mat-error
+                  *ngIf="signupForm.controls['userName'].dirty && signupForm.hasError('required','userName')">
+                  Username is required
+                </mat-error>
+
                 <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label> Email</mat-label>
                   <input formControlName="email"  type="email" matInput placeholder="Enter your Email" >
                   <mat-icon matSuffix>email</mat-icon>
-
+   
                 </mat-form-field>
-              
+               
+                <mat-error
+                *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
+                Email is required
+              </mat-error>
+            
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Password</mat-label>
                     <input formControlName="password" type="password" matInput placeholder="Enter your Password">
                     <mat-icon matSuffix>vpn_key</mat-icon>
                   </mat-form-field>
+                  <mat-error
+                  *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
+                  Password is required
+                </mat-error>
                     <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Confirm Password</mat-label>
-                    <input type="cpassword" matInput placeholder="Enter your Confirm Password">
+                    <input formControlName="cpassword" type="cpassword" matInput placeholder="Enter your Confirm Password">
                   </mat-form-field>
-                <button type="submit" mat-button color="primary">Signup</button>
+                  <mat-error
+                  *ngIf="signupForm.controls['cpassword'].dirty && signupForm.hasError('required','cpassword')">
+                  Confirm Password is required
+                </mat-error>
+                <button type="submit" mat-button color="primary" [disabled]="!signupForm.valid">Signup</button>
               </form>
             </mat-tab>
           </mat-tab-group>
