@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
     private router:Router,private _snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
-  let loginError:boolean=false;
 
     this.signupForm=this.formBuilder.group({
       userName:['',Validators.required],
@@ -39,9 +38,7 @@ export class RegisterComponent implements OnInit {
      console.log(this.signupForm.value);     
      this.signupForm.reset();
      this.router.navigate(['home']).then(()=>{
-      this._snackBar.open("Logged in succesfully", "Ok",{
-        duration:3000
-      });
+      this.openSnackBar("Logged in succesfully", "Ok");
      });
    },err=>{
     this.openSnackBar("Something Went Wrong!!","Error")
@@ -57,9 +54,7 @@ export class RegisterComponent implements OnInit {
       })
       if(userExist){
         this.router.navigate(['home']).then(()=>{
-          this._snackBar.open("Logged in succesfully", "Ok",{
-            duration:3000
-          })
+          this.openSnackBar("Logged in succesfully","Ok")
         })
       }else{
         this.openSnackBar("User doesn't exist,Please signup","Ok")
