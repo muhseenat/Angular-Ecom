@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder,FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { stringify } from 'querystring';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,9 +28,7 @@ export class RegisterComponent implements OnInit {
    this.http.post<any>("http://localhost:3000/signupUser",this.signupForm.value)
    .subscribe(res=>{
      alert("Succcessfully signup");
-     console.log(this.signupForm.value);
-
-     
+     console.log(this.signupForm.value);     
      this.signupForm.reset();
      this.router.navigate(['home']);
    },err=>{
@@ -41,11 +38,18 @@ export class RegisterComponent implements OnInit {
 
   // Login Service
   login(){
-    this.http.get<any>('http://localhost:3000/signupUsers')
+    this.http.get<any>('http://localhost:3000/signupUser')
     .subscribe(res=>{
-      let user=res.find(a:any=>{
-        a.email===this.loginForm.value.email
+      let userExist=res.find((user:any)=>{
+      return  user.email===this.loginForm.value.email && user.password===this.loginForm.value.password
       })
+      if(userExist){
+        this.router.navigate(['home'])
+      }else{
+        alert("User don't exist,please signup")
+      }
+    },err=>{
+      alert("Something Occur i thin k it is an error")
     })
   }
 }

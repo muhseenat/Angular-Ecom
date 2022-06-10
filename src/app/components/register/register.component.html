@@ -8,16 +8,16 @@
 
             <!-- Login Form -->
             <mat-tab label="Login"> 
-                <form class="example-form">
+                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label> Email</mat-label>
-                      <input  type="email" matInput placeholder="Enter your Email">
+                      <input formControlName="email"  type="email" matInput placeholder="Enter your Email">
                       <mat-icon matSuffix>email</mat-icon>
                     </mat-form-field>
                   
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Password</mat-label>
-                      <input type="password" matInput placeholder="Enter your Password">
+                      <input formControlName="password" type="password" matInput placeholder="Enter your Password">
                       <mat-icon matSuffix>vpn_key</mat-icon>
 
                     </mat-form-field>
