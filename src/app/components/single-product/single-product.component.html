@@ -15,8 +15,19 @@
         nesciunt itaque dicta sapiente esse, natus harum inventore at, id laudantium, incidunt aliquam ut consectetur?
         </mat-card-content>
         <div class="star">
-            <mat-icon *ngFor="let i of [].constructor(5)">star</mat-icon>
-                </div>
+          <mat-icon *ngFor="let i of [].constructor(5)">star</mat-icon>
+              </div>
+          <mat-card-actions>
+
+            <div fxLayoutAlign="space-between center">
+     
+    <button mat-button>ADD TO CART</button>
+    <button mat-button class="favorite">ADD TO FAVORITE</button>
+            </div>
+    
+
+          </mat-card-actions>
+
     </div>
 
       </mat-card>

@@ -2,10 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-::ng-deep .star{
+
+ .star{
     padding: 0 5px !important;
     font-size:20px !important;
     color: hsl(60, 100%, 50%) !important;
-  ;
   
+  
+  }
+
+  .mat-button {
+    color: white;
+    background-color: #3F51B5;
+    margin-top: 20px;
+  }
+
+  .favorite {
+    background-color: red;
   }
