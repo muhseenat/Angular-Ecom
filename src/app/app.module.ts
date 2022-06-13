@@ -27,7 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SingleProductComponent } from './components/single-product/single-product.component';
 import { LikeProductComponent } from './components/like-product/like-product.component';
 import { CartComponent } from './components/cart/cart.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 declare module "@angular/core" {
@@ -69,6 +70,8 @@ declare module "@angular/core" {
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
     
   ],
   providers: [],
