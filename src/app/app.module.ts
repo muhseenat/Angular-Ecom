@@ -19,7 +19,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +30,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { HomeComponent } from './components/home/home.component';
 
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
@@ -47,11 +49,13 @@ declare module "@angular/core" {
     BannerComponent,
     ProductListComponent,
     RegisterComponent,
-    HomeComponent,
     SingleProductComponent,
     LikeProductComponent,
     CartComponent,
     WishlistComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

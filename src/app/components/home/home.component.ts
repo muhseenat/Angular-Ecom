@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  
   category!:Array<string>
   action_to_do:string='thumb_up_off'
 
@@ -15,5 +17,4 @@ export class HomeComponent implements OnInit {
     this.category=['BEST SELLER','NEW PRODUCTS']
     
   }
-
 }
