@@ -58,7 +58,17 @@
                 *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
                 Email is required
               </mat-error>
-            
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mobile</mat-label>
+                <input formControlName="phone" type="tel" matInput placeholder="Enter your mobile number">
+                <mat-icon matSuffix>call</mat-icon>
+              </mat-form-field>
+              <mat-error
+              *ngIf="signupForm.controls['phone'].dirty && signupForm.hasError('required','phone')">
+              Phone number is required
+            </mat-error>
+
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Password</mat-label>
                     <input formControlName="password" type="password" matInput placeholder="Enter your Password">
@@ -68,14 +78,14 @@
                   *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
                   Password is required
                 </mat-error>
-                    <mat-form-field class="example-full-width" appearance="fill">
+                    <!-- <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Confirm Password</mat-label>
-                    <input formControlName="cpassword" type="cpassword" matInput placeholder="Enter your Confirm Password">
+                    <input formControlName="" type="cpassword" matInput placeholder="Enter your Confirm Password">
                   </mat-form-field>
                   <mat-error
                   *ngIf="signupForm.controls['cpassword'].dirty && signupForm.hasError('required','cpassword')">
                   Confirm Password is required
-                </mat-error>
+                </mat-error> -->
                 <button type="submit" mat-button color="primary" [disabled]="!signupForm.valid">Signup</button>
               </form>
             </mat-tab>

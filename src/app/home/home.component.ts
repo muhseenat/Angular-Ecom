@@ -7,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   category!:Array<string>
+  action_to_do:string='thumb_up_off'
+
   constructor() { }
 
   ngOnInit(): void {
     this.category=['BEST SELLER','NEW PRODUCTS']
+    
   }
 
 }

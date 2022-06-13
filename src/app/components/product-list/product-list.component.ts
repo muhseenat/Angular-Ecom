@@ -8,8 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
 
   
+  
   constructor() { }
   @Input() title!:string
+ @Input() action_to_do!:string
 
   ngOnInit(): void {
   }

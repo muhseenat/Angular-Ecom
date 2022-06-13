@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishlistComponent implements OnInit {
 
+  action_to_do:string='thumb_down'
+
+
   title:string='MY FAVORITES'
   constructor() { }
 
