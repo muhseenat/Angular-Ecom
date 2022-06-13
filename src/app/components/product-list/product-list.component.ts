@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
   constructor() { }
   @Input() title!:string
  @Input() action_to_do!:string
+ @Input() product!:any
 
   ngOnInit(): void {
   }

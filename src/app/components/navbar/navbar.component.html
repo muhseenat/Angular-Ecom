@@ -18,7 +18,9 @@
         <mat-icon routerLink="/cart">shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon routerLink="/login">login</mat-icon>
+    <mat-icon *ngIf=user (click)="logout()">exit_to_app</mat-icon>
+    <mat-icon *ngIf=!user routerLink="/login">login</mat-icon>
+ 
       </button>
     </mat-toolbar>
   </p>

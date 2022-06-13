@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,7 +17,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
     this.signupForm=this.formBuilder.group({
-      userName:['',Validators.required],
+      name:['',Validators.required],
       email:['',Validators.required],
       password:['',Validators.required],
       phone:['',Validators.required]
@@ -32,35 +31,34 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp(){
-   this.http.post<any>("http://localhost:3000/signupUser",this.signupForm.value)
+   this.http.post<any>("http://localhost:3000/api/users",this.signupForm.value)
    .subscribe(res=>{
-     alert("Succcessfully signup");
-     console.log(this.signupForm.value);     
+    console.log(res,'this is response');
+    console.log(res.token,'this is token');
+ 
+    localStorage.setItem('user_token',res.token)
+    localStorage.setItem('user_id',res._id)
      this.signupForm.reset();
      this.router.navigate(['home']).then(()=>{
       this.openSnackBar("Logged in succesfully", "Ok");
      });
    },err=>{
-    this.openSnackBar("Something Went Wrong!!","Error")
+    console.log(err.message);
+    console.log(err.error.message);
+    
+    this.openSnackBar(err?.error.message,"Error")
    })
   }
 
   // Login Service
   login(){
-    this.http.get<any>('http://localhost:3000/signupUser')
+    this.http.get<any>('http://localhost:3000/api/users/login')
     .subscribe(res=>{
-      let userExist=res.find((user:any)=>{
-      return  user.email===this.loginForm.value.email && user.password===this.loginForm.value.password
-      })
-      if(userExist){
         this.router.navigate(['home']).then(()=>{
           this.openSnackBar("Logged in succesfully","Ok")
         })
-      }else{
-        this.openSnackBar("User doesn't exist,Please signup","Ok")
-      }
     },err=>{
-    this.openSnackBar("Something Went Wrong!!","Error")
+    this.openSnackBar(err?.error.message,"Error")
     })
   }
 

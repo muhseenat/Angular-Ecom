@@ -28,7 +28,7 @@
                     *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
                     Password is required
                   </mat-error>
-                    <button type="submit" mat-button color="primary" [disabled]="!loginForm.valid">Login</button>
+                    <button type="submit" mat-button  [disabled]="!loginForm.valid">Login</button>
                   </form>
           
             </mat-tab>
@@ -39,11 +39,11 @@
             <form class="example-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Username</mat-label>
-                    <input formControlName="userName"   matInput placeholder="Enter your name" >
+                    <input formControlName="name"   matInput placeholder="Enter your name" >
                     <mat-icon matSuffix>group_add</mat-icon>
                   </mat-form-field>
                   <mat-error
-                  *ngIf="signupForm.controls['userName'].dirty && signupForm.hasError('required','userName')">
+                  *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required','name')">
                   Username is required
                 </mat-error>
 
@@ -78,15 +78,8 @@
                   *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
                   Password is required
                 </mat-error>
-                    <!-- <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Confirm Password</mat-label>
-                    <input formControlName="" type="cpassword" matInput placeholder="Enter your Confirm Password">
-                  </mat-form-field>
-                  <mat-error
-                  *ngIf="signupForm.controls['cpassword'].dirty && signupForm.hasError('required','cpassword')">
-                  Confirm Password is required
-                </mat-error> -->
-                <button type="submit" mat-button color="primary" [disabled]="!signupForm.valid">Signup</button>
+                   
+                <button type="submit" mat-button  [disabled]="!signupForm.valid">Signup</button>
               </form>
             </mat-tab>
           </mat-tab-group>
