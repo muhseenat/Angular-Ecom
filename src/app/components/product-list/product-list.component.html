@@ -1,34 +1,38 @@
-
-  <div class="title">{{title}}</div>
-      <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center stretch ">
-        <mat-card class="example-card" *ngFor="let i of product">
-          <img mat-card-image src="../../../assets/revolt-164_6wVEHfI-unsplash.jpg"
-            alt="Photo of a Headphone">
-            <mat-card-content>
-              <div fxLayoutAlign="space-between ">
-                <mat-card-title>{{i?.name}}</mat-card-title>
-                <mat-card-title>₹10000</mat-card-title>
-              </div>
-            <!-- <p>
+<div class="title">{{ title }}</div>
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around stretch"
+  fxLayoutAlign.xs="center center"
+>
+  <mat-card class="example-card" *ngFor="let i of product">
+    <img mat-card-image src="{{ i.image[0] }}" alt="Photo of a Headphone" />
+    <mat-card-content>
+      <div fxLayout="column">
+        <mat-card-title>{{ i?.name }}</mat-card-title>
+        <mat-card-title class="mt-2">₹{{ i.price }}</mat-card-title>
+      </div>
+      <!-- <p>
              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora corporis doloribus soluta
               voluptatibus, rem, illum, saepe repellendus 
              autem nisi sequi amet. Blanditiis rerum, voluptatem velit amet ipsam nobis aspernatur temporibus!
             </p> -->
-          </mat-card-content>
-           <div class="rating">
-            <div class="star">
-           <mat-icon *ngFor="let i of [].constructor(5)">star</mat-icon>
-               </div>
-           </div>
-          
+    </mat-card-content>
+    
+      <div class="star ">
+        <mat-icon class="mt-1" *ngFor="let i of [].constructor(i?.numReviews)"
+          >star</mat-icon
+        >
+        <!-- <p *ngIf="!i?.numReviews?.length">No Reviews</p> -->
+      <span>({{i?.numReviews}})</span>
+        </div>
+    
 
-          <mat-card-actions>
-            <div fxLayoutAlign="space-between center">
-                <mat-icon>{{action_to_do}}</mat-icon>
-                <mat-icon>shopping_cart</mat-icon>
-            </div>
-          </mat-card-actions>
-        </mat-card>
+    <mat-card-actions>
+      <div fxLayoutAlign="space-between center">
+        <mat-icon>{{ action_to_do }}</mat-icon>
+        <mat-icon>shopping_cart</mat-icon>
       </div>
-  
-
+    </mat-card-actions>
+  </mat-card>
+</div>

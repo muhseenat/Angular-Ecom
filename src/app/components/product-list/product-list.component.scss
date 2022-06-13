@@ -1,48 +1,44 @@
 .content {
-    position: absolute;
-    top: 65px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    overflow-y: scroll;
-    
-    &-mob{
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+  &-mob {
     position: absolute;
     top: 113px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    // overflow-y: scroll;
     overflow: hidden;
-    }
   }
-  
- 
-  
-  .example{
-      &-card{
-        max-width: 320px;
-        margin: 10px 5px 5px 10px;
-      }
-   
+}
+
+.example {
+  &-card {
+    max-width: 320px;
+    margin: 10px 5px 5px 10px;
   }
-  
+}
+
 .title {
-    
-    margin: 25px 0px 5px 0px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 25px;
-
+  margin: 25px 0px 5px 0px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+img{
+height:200px ;
+object-fit: contain;
 }
 
-
-::ng-deep .star{
+::ng-deep .star {
   padding: 0 5px !important;
-  font-size:20px !important;
+  font-size: 20px !important;
   color: hsl(60, 100%, 50%) !important;
-;
-
 }
-  
- 
+span{
+  color: black;
+}
