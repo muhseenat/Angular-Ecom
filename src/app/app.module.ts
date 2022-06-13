@@ -29,7 +29,8 @@ import { LikeProductComponent } from './components/like-product/like-product.com
 import { CartComponent } from './components/cart/cart.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
@@ -50,6 +51,7 @@ declare module "@angular/core" {
     SingleProductComponent,
     LikeProductComponent,
     CartComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ declare module "@angular/core" {
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    
+    MatSidenavModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
