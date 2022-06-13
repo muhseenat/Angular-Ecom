@@ -13,7 +13,22 @@ export class ApiService {
     return this.http.get<any>(`${env.BASE_URL}/products`)
     .pipe(map((res:any)=>{
       console.log(res,'this is all products');
-      
+      return res;
+    }))
+  }
+
+  register(data:any){
+   return  this.http.post<any>(`${env.BASE_URL}/users`,data)
+   .pipe(map((res:any)=>{
+    console.log(res,'signup response');
+    return res;
+   }))
+  }
+
+  login(data:any){
+    return this.http.post<any>(`${env.BASE_URL}/users/login`,data)
+    .pipe(map((res:any)=>{
+      console.log(res,'login responxsmfmkffkkgk');
       return res;
     }))
   }

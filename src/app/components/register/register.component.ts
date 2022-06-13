@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
   signupForm!:FormGroup;
   loginForm!:FormGroup;
   constructor(public formBuilder:FormBuilder,private http:HttpClient,
-    private router:Router,private _snackBar:MatSnackBar) { }
+    private router:Router,private _snackBar:MatSnackBar,private api:ApiService) { }
 
   ngOnInit(): void {
 
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp(){
-   this.http.post<any>("http://localhost:3000/api/users",this.signupForm.value)
+   this.api.register(this.signupForm.value)
    .subscribe(res=>{
     console.log(res,'this is response');
     console.log(res.token,'this is token');
@@ -52,12 +53,16 @@ export class RegisterComponent implements OnInit {
 
   // Login Service
   login(){
-    this.http.get<any>('http://localhost:3000/api/users/login')
+    this.api.login(this.loginForm.value)
     .subscribe(res=>{
+      localStorage.setItem('user_token',res.token)
+      localStorage.setItem('user_id',res._id)
         this.router.navigate(['home']).then(()=>{
           this.openSnackBar("Logged in succesfully","Ok")
         })
     },err=>{
+      console.log(err,'this is errro');
+      
     this.openSnackBar(err?.error.message,"Error")
     })
   }
