@@ -1,47 +1,44 @@
-
 <div class="container mt-5">
-    <mat-card class="example-card"  fxFlexFill fxLayout="row"  fxLayout.xs="column"  fxLayoutAlign="center center">
-        <mat-card-title-group>
-          <img mat-card-xl-image src="../../../assets/revolt-164_6wVEHfI-unsplash.jpg" >
-        </mat-card-title-group>
-        <div fxLayout="column" class="m-5">
+  <mat-card
+    class="example-card"
+    fxFlexFill
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutAlign="center center"
+  >
+    <mat-card-title-group>
+      <img
+        mat-card-xl-image
+        src={{product?.image[1]}}
+      />
+    </mat-card-title-group>
+    <div fxLayout="column" class="m-5">
+      <mat-card-title>{{product?.name}}</mat-card-title>
+      <mat-card-title>₹{{product?.price}}</mat-card-title>
 
-            
-                <mat-card-title>Nike shoe</mat-card-title>
-                <mat-card-title>₹10000</mat-card-title>
-            
-        <mat-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, pariatur vero! Ducimus accusamus numquam perspiciatis 
-        nesciunt itaque dicta sapiente esse, natus harum inventore at, id laudantium, incidunt aliquam ut consectetur?
-        </mat-card-content>
+      <mat-card-content>
+      {{product?.description}}
+      </mat-card-content>
 
-        <div class="star">
-          <mat-icon *ngFor="let i of [].constructor(5)">star</mat-icon>
-              </div>
-          <mat-card-actions>
-
-            <div fxLayoutAlign="space-between center">
-     
-    <button mat-button>ADD TO CART</button>
-    <button mat-button class="favorite">ADD TO FAVORITE</button>
-            </div>
-    
-
-          </mat-card-actions>
-
-    </div>
-
-      </mat-card>
-
-        <mat-divider inset></mat-divider>
-        <!-- <hr> -->
-
-      <div class="like">
-        <h3>YOU MAY ALSO LIKE</h3>
-        <!-- <app-product-list></app-product-list> -->
-        <app-like-product>
-
-        </app-like-product>
+      <div class="star">
+        <mat-icon *ngFor="let i of [].constructor(product?.numReviews)">star</mat-icon>
+      <span >({{ product?.numReviews }}/5)</span>
 
       </div>
+      <mat-card-actions>
+        <div fxLayoutAlign="space-between center">
+          <button mat-button>ADD TO CART</button>
+          <button mat-button class="favorite">ADD TO FAVORITE</button>
+        </div>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+
+  <mat-divider inset></mat-divider>
+  <!-- <hr> -->
+
+  <div class="like">
+    <h3>YOU MAY ALSO LIKE</h3>
+    <app-like-product> </app-like-product>
+  </div>
 </div>

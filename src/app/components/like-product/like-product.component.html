@@ -1,18 +1,19 @@
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-evenly stretch"
+>
+  <mat-card
+    class="example-card mt-1"
+    fxLayoutAlign="center center"
+    *ngFor="let i of product"
+    (click)="goto(i._id)"
+  >
+    <img mat-card-md-image src="{{ i.image[0] }}" alt="Photo of a product" />
 
-  <!-- <div class="title"></div> -->
-  <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch">
-    <mat-card class="example-card mt-1" *ngFor="let i of [].constructor(4)" fxLayoutAlign="center center" >
-      <img mat-card-md-image src="../../../assets/revolt-164_6wVEHfI-unsplash.jpg"
-        alt="Photo of a Headphone">
-        <!-- <mat-card-content> -->
-          <div class="m-1" fxLayout.xs="column" >
-            <p>Nike shoe</p>
-            <p>₹10000</p>
-          </div>
-        
-  
-     
-    </mat-card>
-  </div>
-
-
+    <div class="m-1" fxLayout.xs="column">
+      <p>{{ i?.name }}</p>
+      <p>₹{{ i.price }}</p>
+    </div>
+  </mat-card>
+</div>

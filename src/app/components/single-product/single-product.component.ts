@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
-  styleUrls: ['./single-product.component.scss']
+  styleUrls: ['./single-product.component.scss'],
 })
 export class SingleProductComponent implements OnInit {
-  slides = [
-    {'image': '../../../assets/images (1).jpg'},
-    {'image': '../../../assets/images (2).jpg'}, 
-    {'image': '../../../assets/images (3).jpg'}, 
-    {'image': '../../../assets/images (4).jpg'},
-    {'image': '../../../assets/images (5).jpg'},
-    {'image': '../../../assets/images.jpg'},
-  ];
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private api: ApiService,
+    private route: Router
+  ) {}
 
+  public product: any;
   ngOnInit(): void {
+    this.getSingleProduct();
+
+    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
+  getSingleProduct(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('this is product id', id);
+    this.api.getSingleProduct(id).subscribe((res) => {
+      console.log('single product', res);
+      this.product = res;
+      console.log('this is product', res);
+    });
+  }
 }
