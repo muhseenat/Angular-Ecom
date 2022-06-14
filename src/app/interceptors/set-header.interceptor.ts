@@ -15,11 +15,11 @@ export class SetHeaderInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    request.clone({
+   const newRequest= request.clone({
       setHeaders: {
-        authorization: 'Bearer' + this.token,
+        authorization: 'Bearer ' + this.token,
       },
     });
-    return next.handle(request);
+    return next.handle(newRequest);
   }
 }

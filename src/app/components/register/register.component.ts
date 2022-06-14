@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
       (res) => {
         console.log(res, 'this is response');
         console.log(res.token, 'this is token');
-
         localStorage.setItem('user_token', res.token);
         localStorage.setItem('user_id', res._id);
         this.signupForm.reset();
@@ -50,7 +49,6 @@ export class RegisterComponent implements OnInit {
       (err) => {
         console.log(err.message);
         console.log(err.error.message);
-
         this.openSnackBar(err?.error.message, 'Error');
       }
     );
@@ -60,6 +58,8 @@ export class RegisterComponent implements OnInit {
   login() {
     this.api.login(this.loginForm.value).subscribe(
       (res) => {
+        console.log('this is responce after loggin');
+        
         localStorage.setItem('user_token', res.token);
         localStorage.setItem('user_id', res._id);
         this.router.navigate(['home']).then(() => {
