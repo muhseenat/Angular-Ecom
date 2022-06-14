@@ -57,4 +57,10 @@ export class ApiService {
     
     return this.http.delete<any>(`${env.BASE_URL}/users/wishlists?id=${id}`)
   }
+
+  //ADD TO CART 
+
+  add_to_cart(data:any){
+    return this.http.post<any>(`${env.BASE_URL}/users/cart`,data)
+  }
 }
