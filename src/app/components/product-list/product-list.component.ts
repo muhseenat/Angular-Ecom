@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   @Input() title!: string;
   @Input() action_to_do!: string;
   @Input() product!: any;
-  @Input() remove:boolean=false
+  @Input() remove: boolean = false;
   ngOnInit(): void {}
 
   goto(id: any) {
@@ -42,33 +42,35 @@ export class ProductListComponent implements OnInit {
   }
 
   //REMOVING ITEM FROM FAVORITES
-  remove_from_favorites(id:any){
+  remove_from_favorites(id: any) {
     console.log('call going started');
-    
-    this.api.remove_from_wishlist(id).subscribe(res=>{
-      this.openSnackBar("Item Removed from wishlist","Ok")
-    },err=>{
-      this.openSnackBar(err.error.message,"Error")
-    })
+
+    this.api.remove_from_wishlist(id).subscribe(
+      (res) => {
+        this.openSnackBar('Item Removed from wishlist', 'Ok');
+      },
+      (err) => {
+        this.openSnackBar(err.error.message, 'Error');
+      }
+    );
   }
 
-
-  //ADD TO CART 
-  add_to_cart(id:string){
-   let user = localStorage.getItem('user_token')
-   if(user){
-      let data={productId:id,quantity:1}
-      this.api.add_to_cart(data)
-      .subscribe(res=>{
-        this.openSnackBar('Item Added to Cart','Ok')        
-      },err=>{
-        this.openSnackBar(err.error.message,'Ok')        
-        
-      }
-        )
-   }else{
-    this.router.navigate(['login'])
-   }
+  //ADD TO CART
+  add_to_cart(id: string) {
+    let user = localStorage.getItem('user_token');
+    if (user) {
+      let data = { productId: id, quantity: 1 };
+      this.api.add_to_cart(data).subscribe(
+        (res) => {
+          this.openSnackBar('Item Added to Cart', 'Ok');
+        },
+        (err) => {
+          this.openSnackBar(err.error.message, 'Ok');
+        }
+      );
+    } else {
+      this.router.navigate(['login']);
+    }
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);

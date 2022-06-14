@@ -7,6 +7,7 @@ import { SingleProductComponent } from './components/single-product/single-produ
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { CartResolver } from './resolvers/cart.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
 import { SingleProductResolver } from './resolvers/single-product.resolver';
 import { WishlistResolver } from './resolvers/wishlist.resolver';
@@ -38,6 +39,9 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+        resolve: {
+          data: CartResolver,
+        },
       },
       {
         path: 'favorites',
@@ -58,6 +62,11 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ProductResolver, SingleProductResolver, WishlistResolver],
+  providers: [
+    ProductResolver,
+    SingleProductResolver,
+    WishlistResolver,
+    CartResolver,
+  ],
 })
 export class AppRoutingModule {}

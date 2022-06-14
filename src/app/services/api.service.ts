@@ -63,4 +63,15 @@ export class ApiService {
   add_to_cart(data:any){
     return this.http.post<any>(`${env.BASE_URL}/users/cart`,data)
   }
+
+  //GET CART ITEMS
+  get_cart(){
+    return this.http.get<any>(`${env.BASE_URL}/users/cart`)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
 }
+// .pipe(map((res:any)=>{
+//   console.log(res,'signup response');
+//   // return res;
