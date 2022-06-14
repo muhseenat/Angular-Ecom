@@ -28,7 +28,7 @@
         <th mat-header-cell *matHeaderCellDef>Quantity</th>
         <td class="quantity" mat-cell *matCellDef="let dataSource">
           <mat-icon class="change">remove</mat-icon>
-          {{ dataSource?.quantity }}
+          <span>{{ dataSource?.quantity }}</span>
           <mat-icon fontSizeSmall class="change">add</mat-icon>
         </td>
       </ng-container>
