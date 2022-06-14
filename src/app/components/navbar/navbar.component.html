@@ -1,26 +1,41 @@
 <p>
-    <mat-toolbar class="navbar" mat-elevation-z8>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>shoppingbag</mat-icon>
-      </button>
-      <span>EKart</span>
-      <div  fxFlex="22" fxLayoutAlign="center">
-        <a  mat-icon-button  routerLink="/home">Home</a>
+  <mat-toolbar class="navbar" mat-elevation-z8>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>shoppingbag</mat-icon>
+    </button>
+    <span>EKart</span>
+    <div fxFlex="22" fxLayoutAlign="center">
+      <a mat-icon-button routerLink="/home">Home</a>
+    </div>
 
-      </div>
+    <span class="example-spacer"></span>
 
-      <span class="example-spacer"></span>
-
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon routerLink="/favorites">favorite</mat-icon>
-      </button>   
-       <button mat-icon-button class="example-icon shoppingCart-icon" aria-label="Example icon-button with shopping cart icon">
-        <mat-icon routerLink="/cart">shopping_cart</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon *ngIf=user (click)="logout()">exit_to_app</mat-icon>
-    <mat-icon *ngIf=!user routerLink="/login">login</mat-icon>
- 
-      </button>
-    </mat-toolbar>
-  </p>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon routerLink="/favorites">favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon shoppingCart-icon"
+      aria-label="Example icon-button with shopping cart icon"
+    >
+      <mat-icon routerLink="/cart">shopping_cart</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      [ngSwitch]="user"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon *ngSwitchCase="null" routerLink="/login">login</mat-icon>
+      <mat-icon *ngSwitchDefault (click)="logout()">exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>

@@ -51,4 +51,10 @@ export class ApiService {
   get_wishlist(){
     return this.http.get<any>(`${env.BASE_URL}/users/wishlists`)
   }
+
+  //REMOVE FROM WISHLIST
+  remove_from_wishlist(id:any){
+    
+    return this.http.delete<any>(`${env.BASE_URL}/users/wishlists?id=${id}`)
+  }
 }
