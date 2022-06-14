@@ -71,7 +71,16 @@ export class ApiService {
       return res;
     }))
   }
+
+  //REMOVE ITEM FORM CART
+remove_from_cart(productId:string){
+  return this.http.delete<any>(`${env.BASE_URL}/users/cart?productId=${productId}`)
 }
+}
+
+
+
+
 // .pipe(map((res:any)=>{
 //   console.log(res,'signup response');
 //   // return res;
