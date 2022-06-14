@@ -5,7 +5,7 @@
   fxLayoutAlign="space-around stretch"
   fxLayoutAlign.xs="center center"
 >
-  <mat-card class="example-card" *ngFor="let i of product">
+  <mat-card class="example-card" *ngFor="let i of product" (click)="goto(i._id)">
     <img mat-card-image src="{{ i.image[0] }}" alt="Photo of a Headphone" />
     <mat-card-content>
       <div fxLayout="column">
@@ -18,18 +18,17 @@
              autem nisi sequi amet. Blanditiis rerum, voluptatem velit amet ipsam nobis aspernatur temporibus!
             </p> -->
     </mat-card-content>
-    
-      <div class="star ">
-        <mat-icon class="mt-1" *ngFor="let i of [].constructor(i?.numReviews)"
-          >star</mat-icon
-        >
-        <!-- <p *ngIf="!i?.numReviews?.length">No Reviews</p> -->
-      <span>({{i?.numReviews}})</span>
-        </div>
-    
+
+    <div class="star">
+      <mat-icon class="mt-1" *ngFor="let i of [].constructor(i?.numReviews)"
+        >star</mat-icon
+      >
+      <!-- <p *ngIf="!i?.numReviews?.length">No Reviews</p> -->
+      <span>({{ i?.numReviews }})</span>
+    </div>
 
     <mat-card-actions>
-      <div fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="space-between end" >
         <mat-icon>{{ action_to_do }}</mat-icon>
         <mat-icon>shopping_cart</mat-icon>
       </div>

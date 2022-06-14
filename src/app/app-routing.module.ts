@@ -7,17 +7,21 @@ import { SingleProductComponent } from './components/single-product/single-produ
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+  
   },
 {
   path:'',component:HomeLayoutComponent,
   children:[
-    {path:'home',component:HomeComponent},
+    {path:'home',component:HomeComponent,resolve:{
+      data:ProductResolver
+    }},
     {path:'product/:id',component:SingleProductComponent},
     {path:'cart',component:CartComponent},
     {path:'favorites',component:WishlistComponent}
@@ -41,6 +45,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[ProductResolver]
 })
 export class AppRoutingModule { }
