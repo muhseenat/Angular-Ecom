@@ -48,7 +48,7 @@ export class ApiService {
   }
 
   //GET WISHLIST ITEMS
-  get_wishist(id:any){
+  get_wishlist(){
     return this.http.get<any>(`${env.BASE_URL}/users/wishlists`)
   }
 }
