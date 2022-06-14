@@ -12,10 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CartComponent implements AfterViewInit,OnInit {
   
   total!:number;
-  count!:any;
   cartItems!:Array<any>
-  displayedColumns: string[] = ['No', 'Image','Name','Quantity', 'Price' ,'Remove'];
-   public dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  displayedColumns = ['product.image','product.name','quantity', 'price','action'];
+   public dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private activatedRoute:ActivatedRoute ) { }
@@ -26,10 +25,11 @@ export class CartComponent implements AfterViewInit,OnInit {
   getData(){
     this.activatedRoute.data
     .subscribe(res=>{
-     console.log('this is cart items',res);
-     this.cartItems=res?.data?.cartItems
-     console.log('this is dataSourcw',this.dataSource);
-   this.count=res?.data?.cartItems.length
+     this.dataSource=res?.data?.cartItems.map((i:any)=>{
+      return{
+        ...i,action:true
+      }
+     })
      this.total=res?.data?.price
     })
   }
@@ -37,31 +37,7 @@ export class CartComponent implements AfterViewInit,OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  logData(row:any){
-    console.log(row);
-    
-  }
+  
 }
-
-export interface PeriodicElement {
-
-    product:{
-      _id:string,
-      name:string,
-      countInStock:number,
-      image:Array<string>,
-      numReviews:number,
-      rating:number
-    },
-    price:number,
-    quantity:number
-
-
-}
-
-
-const ELEMENT_DATA: PeriodicElement[] = [
-
-]
 
 
