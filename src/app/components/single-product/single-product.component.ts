@@ -49,6 +49,27 @@ export class SingleProductComponent implements OnInit {
     }
   }
 
+
+   //ADD TO CART
+   add_to_cart(id: string) {
+    let user = localStorage.getItem('user_token');
+    if (user) {
+      let data = { productId: id, quantity: 1 };
+      this.api.add_to_cart(data).subscribe(
+        (res) => {
+          this.openSnackBar('Item Added to Cart', 'Ok');
+        },
+        (err) => {
+          this.openSnackBar(err.error.message, 'Ok');
+        }
+      );
+    } else {
+      this.openSnackBar('Please create your account', 'Ok');
+      this.route.navigate(['login']);
+    }
+  }
+ 
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }

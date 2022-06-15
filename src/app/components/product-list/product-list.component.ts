@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {}
 
   goto(id: any) {
-    this.router.navigate([`/product/${id}`]);
+    this.router.navigate([`/home/product/${id}`]);
   }
 
   add_to_favorites(id: any): void {

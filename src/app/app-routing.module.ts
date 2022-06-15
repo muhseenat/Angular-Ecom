@@ -20,11 +20,11 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'home',
     component: HomeLayoutComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomeComponent,
         resolve: {
           data: ProductResolver,

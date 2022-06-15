@@ -1,6 +1,7 @@
 <p>
   <mat-toolbar class="navbar" mat-elevation-z8>
     <button
+    routerLink="/home"
       mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with menu icon"
@@ -8,9 +9,7 @@
       <mat-icon>shoppingbag</mat-icon>
     </button>
     <span>EKart</span>
-    <div fxFlex="22" fxLayoutAlign="center">
-      <a mat-icon-button routerLink="/home">Home</a>
-    </div>
+  
 
     <span class="example-spacer"></span>
 
@@ -19,7 +18,7 @@
       class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon"
     >
-      <mat-icon routerLink="/favorites">favorite</mat-icon>
+      <mat-icon routerLink="/home/favorites">favorite</mat-icon>
       <span>{{wishlist_count}}</span>
     </button>
     <button
@@ -27,7 +26,7 @@
       class="example-icon shoppingCart-icon"
       aria-label="Example icon-button with shopping cart icon"
     >
-      <mat-icon routerLink="/cart">shopping_cart</mat-icon>
+      <mat-icon routerLink="/home/cart">shopping_cart</mat-icon>
       <span>{{cart_count}}</span>
 
     </button>
