@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SingleProductComponent } from './components/single-product/single-product.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { CartResolver } from './resolvers/cart.resolver';
@@ -39,6 +40,7 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+        canActivate:[AuthGuard],
         resolve: {
           data: CartResolver,
         },
@@ -46,6 +48,7 @@ const routes: Routes = [
       {
         path: 'favorites',
         component: WishlistComponent,
+        canActivate:[AuthGuard],
         resolve: {
           data: WishlistResolver,
         },
