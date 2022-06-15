@@ -24,14 +24,12 @@ export class SingleProductComponent implements OnInit {
 
   getSingleProduct(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('this is product id', id);
     this.api.getSingleProduct(id).subscribe((res) => {
-      console.log('single product', res);
       this.product = res;
-      console.log('this is product', res);
     });
   }
 
+  //ADD TO WISHLIST
   add_to_favorites(id: any): void {
     let user = localStorage.getItem('user_token');
     if (user) {
@@ -49,9 +47,8 @@ export class SingleProductComponent implements OnInit {
     }
   }
 
-
-   //ADD TO CART
-   add_to_cart(id: string) {
+  //ADD TO CART
+  add_to_cart(id: string) {
     let user = localStorage.getItem('user_token');
     if (user) {
       let data = { productId: id, quantity: 1 };
@@ -68,7 +65,6 @@ export class SingleProductComponent implements OnInit {
       this.route.navigate(['login']);
     }
   }
- 
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);

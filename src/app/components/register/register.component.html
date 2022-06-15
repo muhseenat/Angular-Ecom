@@ -17,7 +17,11 @@
                     <mat-error
                     *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
                     Email is required
-                  </mat-error>
+                  </mat-error> 
+                
+
+                
+                
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Password</mat-label>
                       <input formControlName="password" type="password" matInput placeholder="Enter your Password">
@@ -28,6 +32,7 @@
                     *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
                     Password is required
                   </mat-error>
+               
                     <button type="submit" mat-button  [disabled]="!loginForm.valid">Login</button>
                   </form>
           
@@ -55,6 +60,10 @@
                 </mat-form-field>
                
                 <mat-error
+                *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('email','email')">
+                Enter a valid email address
+              </mat-error>
+                <mat-error
                 *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
                 Email is required
               </mat-error>
@@ -67,7 +76,11 @@
               <mat-error
               *ngIf="signupForm.controls['phone'].dirty && signupForm.hasError('required','phone')">
               Phone number is required
-            </mat-error>
+            </mat-error>       
+                <mat-error
+            *ngIf="signupForm.controls['phone'].dirty && signupForm.hasError('pattern','phone')">
+            Enter valid number
+          </mat-error>
 
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Password</mat-label>
@@ -78,7 +91,11 @@
                   *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
                   Password is required
                 </mat-error>
-                   
+                <mat-error
+                *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('pattern','password')">
+                 Minimum 8 characters, at least 1 uppercase, 1 lowercase
+               and 1 number and a special character
+              </mat-error>   
                 <button type="submit" mat-button  [disabled]="!signupForm.valid">Signup</button>
               </form>
             </mat-tab>

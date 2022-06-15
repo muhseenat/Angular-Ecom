@@ -22,33 +22,47 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      phone: ['', Validators.required],
+      name: ['', 
+   [   Validators.required,
+       Validators.minLength(3),
+       Validators.maxLength(12)]
+    ],
+      email: ['', 
+     [ Validators.required,
+      Validators.email,]
+
+    ],
+      password: ['', [Validators.required,
+          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]
+    ],
+      phone: ['',[ Validators.required,
+      Validators.pattern('(^\\d{10}$)')]
+    ],
     });
 
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    console.log('this is formm ',this.signupForm);
+    
   }
+
+  
 
   signUp() {
     this.api.register(this.signupForm.value).subscribe(
       (res) => {
-        console.log(res, 'this is response');
-        console.log(res.token, 'this is token');
+    
         localStorage.setItem('user_token', res.token);
         localStorage.setItem('user_id', res._id);
         this.signupForm.reset();
         this.router.navigate(['home']).then(() => {
-          this.openSnackBar('Logged in succesfully', 'Ok');
+         this.openSnackBar('Logged in succesfully', 'Ok');
         });
       },
       (err) => {
-        console.log(err.message);
-        console.log(err.error.message);
         this.openSnackBar(err?.error.message, 'Error');
       }
     );

@@ -7,35 +7,40 @@
     fxLayoutAlign="center center"
   >
     <mat-card-title-group>
-      <img
-        mat-card-xl-image
-        src={{product?.image[1]}}
-      />
+      <img mat-card-xl-image src="{{ product?.image[1] }}" />
     </mat-card-title-group>
     <div fxLayout="column" class="m-5">
-      <mat-card-title>{{product?.name}}</mat-card-title>
-      <mat-card-title>₹{{product?.price}}</mat-card-title>
+      <mat-card-title>{{ product?.name }}</mat-card-title>
+      <mat-card-title>₹{{ product?.price }}</mat-card-title>
 
       <mat-card-content>
-      {{product?.description}}
+        {{ product?.description }}
       </mat-card-content>
 
       <div class="star">
-        <mat-icon *ngFor="let i of [].constructor(product?.numReviews)">star</mat-icon>
-      <span >({{ product?.numReviews }}/5)</span>
-
+        <mat-icon *ngFor="let i of [].constructor(product?.numReviews)"
+          >star</mat-icon
+        >
+        <span>({{ product?.numReviews }}/5)</span>
       </div>
       <mat-card-actions>
         <div fxLayoutAlign="space-between center">
-          <button mat-button  (click)="add_to_cart(product?._id)" >ADD TO CART</button>
-          <button mat-button class="favorite" (click)="add_to_favorites(product?._id)">ADD TO FAVORITE</button>
+          <button mat-button (click)="add_to_cart(product?._id)">
+            ADD TO CART
+          </button>
+          <button
+            mat-button
+            class="favorite"
+            (click)="add_to_favorites(product?._id)"
+          >
+            ADD TO FAVORITE
+          </button>
         </div>
       </mat-card-actions>
     </div>
   </mat-card>
 
   <mat-divider inset></mat-divider>
-  <!-- <hr> -->
 
   <div class="like">
     <h3>YOU MAY ALSO LIKE</h3>
