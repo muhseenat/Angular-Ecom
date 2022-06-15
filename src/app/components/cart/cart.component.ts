@@ -53,12 +53,12 @@ export class CartComponent implements AfterViewInit, OnInit {
     console.log('this is reove isd', id);
     this.api.remove_from_cart(id).subscribe(
       (res) => {
-        this.dataSource = this.dataSource?.filter(
-          (i) => i?.product?._id !== id
-        );
-
-        console.log('product after filter', res);
-
+        this.dataSource?.map((i) => {
+          if (i?.product?._id == id) {
+            this.total = this.total - i.quantity * i.price;
+          }
+        });
+        this.dataSource = this.dataSource.filter((i) => i?.product?._id !== id);
         this.openSnackBar('Item removed from the cart', 'Ok');
       },
       (err) => [this.openSnackBar(err.error.message, 'Ok')]

@@ -54,7 +54,6 @@ export class RegisterComponent implements OnInit {
   signUp() {
     this.api.register(this.signupForm.value).subscribe(
       (res) => {
-    
         localStorage.setItem('user_token', res.token);
         localStorage.setItem('user_id', res._id);
         this.signupForm.reset();
