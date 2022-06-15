@@ -57,6 +57,9 @@ const routes: Routes = [
     component: LoginLayoutComponent,
     children: [{ path: 'login', component: RegisterComponent }],
   },
+  {
+    path:'**',redirectTo:'/home', pathMatch:'full'
+  }
 ];
 
 @NgModule({

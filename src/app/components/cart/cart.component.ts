@@ -21,7 +21,7 @@ export class CartComponent implements AfterViewInit, OnInit {
     'price',
     'action',
   ];
-  public dataSource = new MatTableDataSource<any>([]);
+  public dataSource: Array<any> = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -53,6 +53,12 @@ export class CartComponent implements AfterViewInit, OnInit {
     console.log('this is reove isd', id);
     this.api.remove_from_cart(id).subscribe(
       (res) => {
+        this.dataSource = this.dataSource?.filter(
+          (i) => i?.product?._id !== id
+        );
+
+        console.log('product after filter', res);
+
         this.openSnackBar('Item removed from the cart', 'Ok');
       },
       (err) => [this.openSnackBar(err.error.message, 'Ok')]
@@ -60,7 +66,7 @@ export class CartComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   openSnackBar(message: string, action: string) {

@@ -6,7 +6,11 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  // user:any=localStorage.getItem('user_token')
+  // wishlist_count:any=this.user?localStorage.getItem('wishlist_count'):false
+  // cart_count!:number;
 
+  cartItems!:any;
   constructor(private http:HttpClient) { }
 
   //GET ALL PRODUCT SERVICE
@@ -45,17 +49,30 @@ export class ApiService {
   //ADD TO WISHLIST SERVICE
   add_to_wishlist(id:any){
     return this.http.put<any>(`${env.BASE_URL}/users/wishlists`,{id})
+    .pipe(map((res:any)=>{
+      console.log(res,'this is add to wishlist message');
+      this.get_wishlist();
+      
+      
+    }))
   }
 
   //GET WISHLIST ITEMS
   get_wishlist(){
     return this.http.get<any>(`${env.BASE_URL}/users/wishlists`)
+   
   }
 
   //REMOVE FROM WISHLIST
   remove_from_wishlist(id:any){
     
     return this.http.delete<any>(`${env.BASE_URL}/users/wishlists?id=${id}`)
+    .pipe(map((res)=>{
+      console.log('this is response');
+
+      
+      
+    }))
   }
 
   //ADD TO CART 
@@ -76,11 +93,13 @@ export class ApiService {
 remove_from_cart(productId:string){
   return this.http.delete<any>(`${env.BASE_URL}/users/cart?productId=${productId}`)
 }
+
+
+
+
 }
 
 
 
 
-// .pipe(map((res:any)=>{
-//   console.log(res,'signup response');
-//   // return res;
+

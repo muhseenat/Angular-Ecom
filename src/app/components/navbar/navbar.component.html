@@ -20,6 +20,7 @@
       aria-label="Example icon-button with heart icon"
     >
       <mat-icon routerLink="/favorites">favorite</mat-icon>
+      <span>{{wishlist_count}}</span>
     </button>
     <button
       mat-icon-button
@@ -27,6 +28,8 @@
       aria-label="Example icon-button with shopping cart icon"
     >
       <mat-icon routerLink="/cart">shopping_cart</mat-icon>
+      <span>{{cart_count}}</span>
+
     </button>
     <button
       mat-icon-button

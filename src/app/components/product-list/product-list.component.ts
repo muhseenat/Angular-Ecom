@@ -47,6 +47,7 @@ export class ProductListComponent implements OnInit {
 
     this.api.remove_from_wishlist(id).subscribe(
       (res) => {
+        this.product=this.product.filter((i:any)=>i._id!==id)
         this.openSnackBar('Item Removed from wishlist', 'Ok');
       },
       (err) => {

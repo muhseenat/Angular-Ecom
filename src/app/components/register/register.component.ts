@@ -57,9 +57,7 @@ export class RegisterComponent implements OnInit {
   // Login Service
   login() {
     this.api.login(this.loginForm.value).subscribe(
-      (res) => {
-        console.log('this is responce after loggin');
-        
+      (res) => {        
         localStorage.setItem('user_token', res.token);
         localStorage.setItem('user_id', res._id);
         this.router.navigate(['home']).then(() => {
@@ -67,8 +65,6 @@ export class RegisterComponent implements OnInit {
         });
       },
       (err) => {
-        console.log(err, 'this is errro');
-
         this.openSnackBar(err?.error.message, 'Error');
       }
     );
