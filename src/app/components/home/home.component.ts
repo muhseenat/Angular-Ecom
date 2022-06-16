@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,11 @@ export class HomeComponent implements OnInit {
   category!:Array<string>
   action_to_do:string='thumb_up_off'
 
-  constructor(private activatedRoute:ActivatedRoute) { }
+  constructor(private activatedRoute:ActivatedRoute,private api:ApiService, private cartApi:CartService) { }
 
   ngOnInit(): void {
     this.category=['BEST SELLER','NEW PRODUCTS']
+    this.cartApi.get_cart().subscribe();
     this.activatedRoute.data
     .subscribe(res=>{
       console.log(res,'this is response after subscribe');

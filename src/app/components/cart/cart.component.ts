@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent implements AfterViewInit, OnInit {
   total!: number;
+  public grandTotal:number=0;
   cartItems!: Array<any>;
   show: boolean = false;
   displayedColumns = [
@@ -28,6 +30,7 @@ export class CartComponent implements AfterViewInit, OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private api: ApiService,
+    private cartApi:CartService,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -35,7 +38,7 @@ export class CartComponent implements AfterViewInit, OnInit {
     this.getData();
   }
   getData() {
-    this.activatedRoute.data.subscribe((res) => {
+    this.cartApi.getProducts().subscribe((res) => {
       console.log('this is data', res);
 
       this.dataSource = res?.data?.cartItems.map((i: any) => {
@@ -46,13 +49,16 @@ export class CartComponent implements AfterViewInit, OnInit {
       });
       this.show = res?.data?.price > 0 ? true : false;
       this.total = res?.data?.price;
+  //  this.grandTotal=this.api.getTotalPrice()
     });
   }
 
   remove_from_cart(id: string) {
     console.log('this is reove isd', id);
-    this.api.remove_from_cart(id).subscribe(
+    this.cartApi.removeCart(id).subscribe(
       (res) => {
+        console.log('this is the data after remove from api',res);
+        
         this.dataSource?.map((i) => {
           if (i?.product?._id == id) {
             this.total = this.total - i.quantity * i.price;

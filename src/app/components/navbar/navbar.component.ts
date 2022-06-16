@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,16 +14,16 @@ export class NavbarComponent implements OnInit {
   user: any;
   wishlist_count!: number;
   cart_count!: number;
-  constructor(private _snackBar: MatSnackBar, private api: ApiService, private route:Router) {}
+  constructor(private _snackBar: MatSnackBar, private api: ApiService, private route:Router, private cartApi:CartService) {}
   ngOnInit(): void {
     this.user = localStorage.getItem('user_token');
     this.api.get_wishlist().subscribe((res) => {
       console.log('data of wishlist header', res);
       this.wishlist_count = res?.length;
     });
-    this.api.get_cart().subscribe((res) => {
+    this.cartApi.getProducts().subscribe((res) => {
       console.log('data of cart item', res);
-      this.cart_count = res?.cartItems?.length;
+      this.cart_count = res?.length;
     });
   }
   logout() {

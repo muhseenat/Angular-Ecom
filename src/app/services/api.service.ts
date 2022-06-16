@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from 'src/environments/environment';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  // user:any=localStorage.getItem('user_token')
-  // wishlist_count:any=this.user?localStorage.getItem('wishlist_count'):false
-  // cart_count!:number;
 
-  cartItems!:any;
-  constructor(private http:HttpClient) { }
+
+  cartItems!:Observable<Array<any>>;
+  constructor(private http:HttpClient,
+    private _snackBar: MatSnackBar,
+    private router:Router
+    ) { }
+
+//SNACKBAR 
+openSnackBar(message: string, action: string) {
+  this._snackBar.open(message, action);
+}
+
+
 
   //GET ALL PRODUCT SERVICE
   getProduct(){
@@ -28,63 +39,104 @@ export class ApiService {
   }
 
   //SIGNUP SERVICE
-  register(data:any){
+  signUP(data:any){
    return  this.http.post<any>(`${env.BASE_URL}/users`,data)
-   .pipe(map((res:any)=>{
+   .subscribe((res:any)=>{
     console.log(res,'signup response');
-    return res;
-   }))
-  }
-
+    localStorage.setItem('user_token', res.token);
+    localStorage.setItem('user_id', res._id);
+  
+    this.router.navigate(['home']).then(() => {
+     this.openSnackBar('Logged in succesfully', 'Ok');
+    });
+  },
+  (err:any) => {
+    this.openSnackBar(err?.error.message, 'Error')
+  })}
 
   //LOGIN SERVICE
   login(data:any){
     return this.http.post<any>(`${env.BASE_URL}/users/login`,data)
-    .pipe(map((res:any)=>{
-      console.log(res,'login responxsmfmkffkkgk');
-      return res;
-    }))
+    .subscribe(
+      (res) => {        
+        localStorage.setItem('user_token', res.token);
+        localStorage.setItem('user_id', res._id);
+        this.router.navigate(['home']).then(() => {
+          this.openSnackBar('Logged in succesfully', 'Ok');
+        });
+      },
+      (err) => {
+        this.openSnackBar(err?.error.message, 'Error');
+      }
+    );
   }
 
   //ADD TO WISHLIST SERVICE
   add_to_wishlist(id:any){
+    let user = localStorage.getItem('user_token');
+    if (user) {
     return this.http.put<any>(`${env.BASE_URL}/users/wishlists`,{id})
-    .pipe(map((res:any)=>{
-      console.log(res,'this is add to wishlist message');
-      this.get_wishlist();
-      
-      
-    }))
+    .subscribe(
+      (res) => {
+        // this.cartApi.addtoCart(id).subscribe()
+        this.openSnackBar('Item Added to Favorites', 'Ok');
+      },
+      (err) => {
+        this.openSnackBar(err?.error.message, 'Ok');
+      }
+    );
+  } else {
+    this.openSnackBar('Please create your account', 'Ok');
+   return this.router.navigate(['login']);
+  }
   }
 
+  // this.get_wishlist();
   //GET WISHLIST ITEMS
   get_wishlist(){
     return this.http.get<any>(`${env.BASE_URL}/users/wishlists`)
-   
+    // .pipe(map((res)=>{
+
+    // }))
   }
 
   //REMOVE FROM WISHLIST
   remove_from_wishlist(id:any){
-    
     return this.http.delete<any>(`${env.BASE_URL}/users/wishlists?id=${id}`)
-    .pipe(map((res)=>{
-      console.log('this is response');
-
-      
-      
-    }))
+    .subscribe(
+      (res) => {
+        // this.product=this.product.filter((i:any)=>i._id!==id)
+        this.openSnackBar('Item Removed from wishlist', 'Ok');
+      },
+      (err) => {
+        this.openSnackBar(err.error.message, 'Error');
+      }
+    );
   }
 
   //ADD TO CART 
 
   add_to_cart(data:any){
     return this.http.post<any>(`${env.BASE_URL}/users/cart`,data)
+    .pipe(res=>{
+     
+      let product={
+        _id:data.productId
+      }
+      // this.cartItems.push(product)
+      console.log(this.cartItems,'this is cart items');
+      return res
+    })
   }
 
   //GET CART ITEMS
   get_cart(){
     return this.http.get<any>(`${env.BASE_URL}/users/cart`)
     .pipe(map((res:any)=>{
+      this.cartItems=res?.cartItems;
+      console.log('responce when add to cart',res);
+      console.log(this.cartItems,'this is cart Itrms afre sdd');
+      
       return res;
     }))
   }
@@ -92,7 +144,22 @@ export class ApiService {
   //REMOVE ITEM FORM CART
 remove_from_cart(productId:string){
   return this.http.delete<any>(`${env.BASE_URL}/users/cart?productId=${productId}`)
+  .pipe(res=>{
+    // this.cartItems=this.cartItems.filter(a=>a.product._id!==productId)
+    console.log(this.cartItems,'this is cartItems after remove');
+    
+    return res;
+  })
 }
+
+
+
+
+
+
+
+
+
 
 
 

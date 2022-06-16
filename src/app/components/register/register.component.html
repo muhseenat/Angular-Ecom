@@ -8,7 +8,7 @@
 
             <!-- Login Form -->
             <mat-tab label="Login"> 
-                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="api.login(loginForm.value)">
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label> Email</mat-label>
                       <input formControlName="email"  type="email" matInput placeholder="Enter your Email">
@@ -41,7 +41,7 @@
 
         <!-- Signup Form -->
             <mat-tab label="Signup"> 
-            <form class="example-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <form class="example-form" [formGroup]="signupForm" (ngSubmit)='api.signUP(signupForm.value)'>
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Username</mat-label>
                     <input formControlName="name"   matInput placeholder="Enter your name" >

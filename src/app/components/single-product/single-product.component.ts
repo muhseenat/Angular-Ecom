@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SingleProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private api: ApiService,
+    public api: ApiService,
     private route: Router,
     private _snackBar: MatSnackBar
   ) {}
@@ -29,23 +29,23 @@ export class SingleProductComponent implements OnInit {
     });
   }
 
-  //ADD TO WISHLIST
-  add_to_favorites(id: any): void {
-    let user = localStorage.getItem('user_token');
-    if (user) {
-      this.api.add_to_wishlist(id).subscribe(
-        (res) => {
-          this.openSnackBar('Item Added to Favorites', 'Ok');
-        },
-        (err) => {
-          this.openSnackBar(err?.error.message, 'Ok');
-        }
-      );
-    } else {
-      this.openSnackBar('Please create your account', 'Ok');
-      this.route.navigate(['/login']);
-    }
-  }
+  // //ADD TO WISHLIST
+  // add_to_favorites(id: any): void {
+  //   let user = localStorage.getItem('user_token');
+  //   if (user) {
+  //     this.api.add_to_wishlist(id).subscribe(
+  //       (res) => {
+  //         this.openSnackBar('Item Added to Favorites', 'Ok');
+  //       },
+  //       (err) => {
+  //         this.openSnackBar(err?.error.message, 'Ok');
+  //       }
+  //     );
+  //   } else {
+  //     this.openSnackBar('Please create your account', 'Ok');
+  //     this.route.navigate(['/login']);
+  //   }
+  // }
 
   //ADD TO CART
   add_to_cart(id: string) {

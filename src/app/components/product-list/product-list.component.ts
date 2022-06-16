@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,8 +12,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductListComponent implements OnInit {
   constructor(
     private router: Router,
-    private api: ApiService,
-    private _snackBar: MatSnackBar
+    public api: ApiService,
+    private _snackBar: MatSnackBar,
+    public cartApi:CartService
   ) {}
   @Input() title!: string;
   @Input() action_to_do!: string;
@@ -24,56 +26,30 @@ export class ProductListComponent implements OnInit {
     this.router.navigate([`/home/product/${id}`]);
   }
 
-  add_to_favorites(id: any): void {
-    let user = localStorage.getItem('user_token');
-    if (user) {
-      this.api.add_to_wishlist(id).subscribe(
-        (res) => {
-          this.openSnackBar('Item Added to Favorites', 'Ok');
-        },
-        (err) => {
-          this.openSnackBar(err?.error.message, 'Ok');
-        }
-      );
-    } else {
-      this.openSnackBar('Please create your account', 'Ok');
-      this.router.navigate(['login']);
-    }
-  }
+  
 
-  //REMOVING ITEM FROM FAVORITES
-  remove_from_favorites(id: any) {
-    console.log('call going started');
+  
 
-    this.api.remove_from_wishlist(id).subscribe(
-      (res) => {
-        this.product=this.product.filter((i:any)=>i._id!==id)
-        this.openSnackBar('Item Removed from wishlist', 'Ok');
-      },
-      (err) => {
-        this.openSnackBar(err.error.message, 'Error');
-      }
-    );
-  }
+//   //ADD TO CART
+//   add_to_cart(id: string) {
+//     let user = localStorage.getItem('user_token');
+//     if (user) {
+//       let data = { productId: id, quantity: 1 };
+//       this.cartApi.addtoCart(data).subscribe(
+//         (res) => {
+//           console.log('this is cart items count look for ir',res);
+//           this.openSnackBar('Item Added to Cart', 'Ok');
 
-  //ADD TO CART
-  add_to_cart(id: string) {
-    let user = localStorage.getItem('user_token');
-    if (user) {
-      let data = { productId: id, quantity: 1 };
-      this.api.add_to_cart(data).subscribe(
-        (res) => {
-          this.openSnackBar('Item Added to Cart', 'Ok');
-        },
-        (err) => {
-          this.openSnackBar(err.error.message, 'Ok');
-        }
-      );
-    } else {
-      this.router.navigate(['login']);
-    }
-  }
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
+//         },
+//         (err) => {
+//           this.openSnackBar(err.error.message, 'Ok');
+//         }
+//       );
+//     } else {
+//       this.router.navigate(['login']);
+//     }
+//   }
+//   openSnackBar(message: string, action: string) {
+//     this._snackBar.open(message, action);
+//   }
 }

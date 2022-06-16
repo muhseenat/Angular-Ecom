@@ -28,12 +28,11 @@
 
     <mat-card-actions>
       <div [ngSwitch]="remove" fxLayout="row" fxLayoutAlign="space-between end">
-        <mat-icon *ngSwitchCase="true" (click)= "remove_from_favorites(i?._id)">{{ action_to_do }}</mat-icon>
-        <mat-icon *ngSwitchDefault (click)="add_to_favorites(i?._id)">{{
+        <mat-icon *ngSwitchCase="true" (click)="api.remove_from_wishlist(i?._id)">{{ action_to_do }}</mat-icon>
+        <mat-icon *ngSwitchDefault (click)="api.add_to_wishlist(i?._id)">{{
           action_to_do
         }}</mat-icon>
-
-        <mat-icon (click)="add_to_cart(i?._id)">shopping_cart</mat-icon>
+        <mat-icon (click)="cartApi.addToCart(i?._id)">shopping_cart</mat-icon>
       </div>
     </mat-card-actions>
   </mat-card>

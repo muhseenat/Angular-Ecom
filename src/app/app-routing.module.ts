@@ -41,9 +41,7 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent,
         canActivate:[AuthGuard],
-        resolve: {
-          data: CartResolver,
-        },
+      
       },
       {
         path: 'favorites',
