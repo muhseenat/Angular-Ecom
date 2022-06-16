@@ -22,9 +22,6 @@ export class HomeComponent implements OnInit {
     this.cartApi.get_cart().subscribe();
     this.activatedRoute.data
     .subscribe(res=>{
-      console.log(res,'this is response after subscribe');
-      console.log(res?.data?.products[0]?.name);
-      console.log(res?.data?.products.slice(0,5));
       this.product=res?.data?.products.slice(0,4);
       this.new_product=res?.data?.products.slice(5,9)
     })

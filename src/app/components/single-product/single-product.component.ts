@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-single-product',
@@ -12,6 +13,7 @@ export class SingleProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public api: ApiService,
+    public cartApi:CartService,
     private route: Router,
     private _snackBar: MatSnackBar
   ) {}
@@ -47,26 +49,26 @@ export class SingleProductComponent implements OnInit {
   //   }
   // }
 
-  //ADD TO CART
-  add_to_cart(id: string) {
-    let user = localStorage.getItem('user_token');
-    if (user) {
-      let data = { productId: id, quantity: 1 };
-      this.api.add_to_cart(data).subscribe(
-        (res) => {
-          this.openSnackBar('Item Added to Cart', 'Ok');
-        },
-        (err) => {
-          this.openSnackBar(err.error.message, 'Ok');
-        }
-      );
-    } else {
-      this.openSnackBar('Please create your account', 'Ok');
-      this.route.navigate(['login']);
-    }
-  }
+//   //ADD TO CART
+//   add_to_cart(id: string) {
+//     let user = localStorage.getItem('user_token');
+//     if (user) {
+//       let data = { productId: id, quantity: 1 };
+//       this.api.add_to_cart(data).subscribe(
+//         (res) => {
+//           this.openSnackBar('Item Added to Cart', 'Ok');
+//         },
+//         (err) => {
+//           this.openSnackBar(err.error.message, 'Ok');
+//         }
+//       );
+//     } else {
+//       this.openSnackBar('Please create your account', 'Ok');
+//       this.route.navigate(['login']);
+//     }
+//   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
+//   openSnackBar(message: string, action: string) {
+//     this._snackBar.open(message, action);
+//   }
 }

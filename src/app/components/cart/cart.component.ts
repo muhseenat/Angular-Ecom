@@ -16,6 +16,7 @@ export class CartComponent implements AfterViewInit, OnInit {
   public grandTotal:number=0;
   cartItems!: Array<any>;
   show: boolean = false;
+  public data!:any;
   displayedColumns = [
     'product.image',
     'product.name',
@@ -30,7 +31,7 @@ export class CartComponent implements AfterViewInit, OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private api: ApiService,
-    private cartApi:CartService,
+    public cartApi:CartService,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -38,44 +39,57 @@ export class CartComponent implements AfterViewInit, OnInit {
     this.getData();
   }
   getData() {
-    this.cartApi.getProducts().subscribe((res) => {
-      console.log('this is data', res);
 
-      this.dataSource = res?.data?.cartItems.map((i: any) => {
+   this.data= this.cartApi.getData()
+console.log(this.data,'this is data coming from service');
+
+  
+
+      this.dataSource = this.data?.cartItems.map((i: any) => {
         return {
           ...i,
           action: true,
         };
       });
-      this.show = res?.data?.price > 0 ? true : false;
-      this.total = res?.data?.price;
+      this.show = this.data?.cartItems.length? true : false;
+      this.total = this.data?.price;
   //  this.grandTotal=this.api.getTotalPrice()
-    });
-  }
+    }
+  
+   removeCart(id:String){
 
-  remove_from_cart(id: string) {
-    console.log('this is reove isd', id);
-    this.cartApi.removeCart(id).subscribe(
-      (res) => {
-        console.log('this is the data after remove from api',res);
+     this.cartApi.removeCart(id)
+
+     this.dataSource?.forEach((i) => {
+              if (i?.product?._id == id) {
+                this.total = this.total - i.quantity * i.price;
+              }
+            });
+            // this.dataSource = this.dataSource.filter((i) => i?.product?._id !== id);
+  
+ 
+   }
+  // remove_from_cart(id: string) {
+  //   console.log('this is reove isd', id);
+  //   this.cartApi.removeCart(id).subscribe(
+  //     (res) => {
+  //       console.log('this is the data after remove from api',res);
         
-        this.dataSource?.map((i) => {
-          if (i?.product?._id == id) {
-            this.total = this.total - i.quantity * i.price;
-          }
-        });
-        this.dataSource = this.dataSource.filter((i) => i?.product?._id !== id);
-        this.openSnackBar('Item removed from the cart', 'Ok');
-      },
-      (err) => [this.openSnackBar(err.error.message, 'Ok')]
-    );
-  }
+  //       this.dataSource?.map((i) => {
+  //         if (i?.product?._id == id) {
+  //           this.total = this.total - i.quantity * i.price;
+  //         }
+  //       });
+  //       this.dataSource = this.dataSource.filter((i) => i?.product?._id !== id);
+  //       this.openSnackBar('Item removed from the cart', 'Ok');
+  //     },
+  //     (err) => [this.openSnackBar(err.error.message, 'Ok')]
+  //   );
+  // }
 
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
+
 }

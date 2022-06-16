@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class ProductListComponent implements OnInit {
   constructor(
     private router: Router,
     public api: ApiService,
-    private _snackBar: MatSnackBar,
     public cartApi:CartService
   ) {}
   @Input() title!: string;

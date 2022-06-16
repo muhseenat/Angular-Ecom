@@ -14,17 +14,17 @@ export class NavbarComponent implements OnInit {
   user: any;
   wishlist_count!: number;
   cart_count!: number;
-  constructor(private _snackBar: MatSnackBar, private api: ApiService, private route:Router, private cartApi:CartService) {}
+  constructor(private _snackBar: MatSnackBar, private api: ApiService, private route:Router, public cartApi:CartService) {}
   ngOnInit(): void {
     this.user = localStorage.getItem('user_token');
     this.api.get_wishlist().subscribe((res) => {
       console.log('data of wishlist header', res);
       this.wishlist_count = res?.length;
     });
-    this.cartApi.getProducts().subscribe((res) => {
-      console.log('data of cart item', res);
-      this.cart_count = res?.length;
-    });
+    // this.cartApi.get((res) => {
+    //   console.log('data of cart item', res);
+    //   this.cart_count = res?.length;
+    // });
   }
   logout() {
     confirm('are you teally want to logout');

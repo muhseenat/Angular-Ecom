@@ -21,8 +21,7 @@ export class WishlistComponent implements OnInit {
    this.activateRoute.data
    
    .subscribe(res=>{
-    console.log("activate data route in widhliat wprkwedd");
-    console.log('this is  wishlist get responce',res);
+    //we can also take data from wishloisi service
     this.product=res?.data;
    })
   }

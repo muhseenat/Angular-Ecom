@@ -27,7 +27,7 @@
       aria-label="Example icon-button with shopping cart icon"
     >
       <mat-icon routerLink="/home/cart">shopping_cart</mat-icon>
-      <span>{{cart_count}}</span>
+      <span>{{cartApi.count || " "}}</span>
 
     </button>
     <button

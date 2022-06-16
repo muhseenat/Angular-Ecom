@@ -14,7 +14,7 @@ import { CartService } from '../services/cart.service';
 export class CartResolver implements Resolve<boolean> {
   constructor(private api:CartService){}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-  return this.api.getProducts().pipe(map((res:any)=>{
+  return this.api.getData().pipe(map((res:any)=>{
     console.log('this is resolver res',res);
     
    return res;
