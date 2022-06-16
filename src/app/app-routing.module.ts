@@ -8,7 +8,6 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
-import { CartResolver } from './resolvers/cart.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
 import { SingleProductResolver } from './resolvers/single-product.resolver';
 import { WishlistResolver } from './resolvers/wishlist.resolver';
@@ -70,7 +69,6 @@ const routes: Routes = [
     ProductResolver,
     SingleProductResolver,
     WishlistResolver,
-    CartResolver,
   ],
 })
 export class AppRoutingModule {}

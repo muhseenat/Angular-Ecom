@@ -28,6 +28,10 @@ export class CartService {
     this.cart = data;
   }
 
+  //RETURN CART ITEMS (TRY FOR TEST)
+  getData() {
+    return this.cart.cartItems;
+  }
   //GET CART ITEMS
   get_cart() {
     const data = this.http.get<any>(`${env.BASE_URL}/users/cart`);
@@ -55,7 +59,7 @@ export class CartService {
       return this.router.navigate(['login']);
     }
   }
- //REMOVE FROM CART
+  //REMOVE FROM CART
   removeCart(productId: any) {
     return this.http
       .delete<any>(`${env.BASE_URL}/users/cart?productId=${productId}`)

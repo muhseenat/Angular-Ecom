@@ -1,4 +1,4 @@
-<ng-container *ngIf="dataSource">
+<ng-container *ngIf="cartApi.cart.cartItems.length">
   <h2 class="m-4" fxLayoutAlign="center center">MY CART</h2>
 
   <div class="mat-elevation-z8 m-3">
@@ -67,7 +67,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="!dataSource">
+<ng-container *ngIf="!cartApi.cart.cartItems.length">
   <mat-card class="example-card m-5 p2">
     <mat-card-title>MY CART</mat-card-title>
     <mat-card-content fxLayout="column" fxLayoutAlign="center center">
