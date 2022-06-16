@@ -56,6 +56,7 @@ export class CartService {
         }
       );
     } else {
+      this.openSnackBar('Please create your account', 'Ok');
       return this.router.navigate(['login']);
     }
   }
@@ -66,7 +67,7 @@ export class CartService {
       .subscribe(
         (res) => {
           this.get_cart();
-          return true;
+          this.openSnackBar('Item removed from the cart', 'Ok');
         },
         (err) => {
           this.openSnackBar(err.error.message, 'Ok');

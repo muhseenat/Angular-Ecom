@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -13,17 +12,11 @@ export class WishlistComponent implements OnInit {
   remove:boolean=true;
   public product:any;
   title:string='MY FAVORITES'
-  constructor(private activateRoute:ActivatedRoute) { }
+  constructor(
+    public api:WishlistService
+  ) { }
 
   ngOnInit(): void {
-    console.log("start of wishlist call");
-    
-   this.activateRoute.data
-   
-   .subscribe(res=>{
-    //we can also take data from wishloisi service
-    this.product=res?.data;
-   })
   }
 
 }

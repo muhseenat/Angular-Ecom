@@ -1,107 +1,175 @@
-<div  fxFlexFill fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="example-card mat-elevation-z4" >
-        <mat-card-header>
-          <mat-card-title>Login/Signup</mat-card-title>
-          <mat-card-subtitle>EKart</mat-card-subtitle>
-        </mat-card-header>
-        <mat-tab-group>
+<div fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="example-card mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>Login/Signup</mat-card-title>
+      <mat-card-subtitle>EKart</mat-card-subtitle>
+    </mat-card-header>
+    <mat-tab-group>
+      <!-- Login Form -->
+      <mat-tab label="Login">
+        <form
+          class="example-form"
+          [formGroup]="loginForm"
+          (ngSubmit)="api.login(loginForm.value)"
+        >
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label> Email</mat-label>
+            <input
+              formControlName="email"
+              type="email"
+              matInput
+              placeholder="Enter your Email"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              signupForm.controls['email'].dirty &&
+              signupForm.hasError('required', 'email')
+            "
+          >
+            Email is required
+          </mat-error>
 
-            <!-- Login Form -->
-            <mat-tab label="Login"> 
-                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="api.login(loginForm.value)">
-                    <mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label> Email</mat-label>
-                      <input formControlName="email"  type="email" matInput placeholder="Enter your Email">
-                      <mat-icon matSuffix>email</mat-icon>
-                    </mat-form-field>
-                    <mat-error
-                    *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
-                    Email is required
-                  </mat-error> 
-                
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              formControlName="password"
+              type="password"
+              matInput
+              placeholder="Enter your Password"
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              signupForm.controls['password'].dirty &&
+              signupForm.hasError('required', 'password')
+            "
+          >
+            Password is required
+          </mat-error>
 
-                
-                
-                    <mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label>Password</mat-label>
-                      <input formControlName="password" type="password" matInput placeholder="Enter your Password">
-                      <mat-icon matSuffix>vpn_key</mat-icon>
+          <button type="submit" mat-button [disabled]="!loginForm.valid">
+            Login
+          </button>
+        </form>
+      </mat-tab>
+      <!-- login form end here -->
 
-                    </mat-form-field>
-                    <mat-error
-                    *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
-                    Password is required
-                  </mat-error>
-               
-                    <button type="submit" mat-button  [disabled]="!loginForm.valid">Login</button>
-                  </form>
-          
-            </mat-tab>
-           <!-- login form end here -->
+      <!-- Signup Form -->
+      <mat-tab label="Signup">
+        <form
+          class="example-form"
+          [formGroup]="signupForm"
+          (ngSubmit)="api.signUP(signupForm.value)"
+        >
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input
+              formControlName="name"
+              matInput
+              placeholder="Enter your name"
+            />
+            <mat-icon matSuffix>group_add</mat-icon>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              signupForm.controls['name'].dirty &&
+              signupForm.hasError('required', 'name')
+            "
+          >
+            Username is required
+          </mat-error>
 
-        <!-- Signup Form -->
-            <mat-tab label="Signup"> 
-            <form class="example-form" [formGroup]="signupForm" (ngSubmit)='api.signUP(signupForm.value)'>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Username</mat-label>
-                    <input formControlName="name"   matInput placeholder="Enter your name" >
-                    <mat-icon matSuffix>group_add</mat-icon>
-                  </mat-form-field>
-                  <mat-error
-                  *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required','name')">
-                  Username is required
-                </mat-error>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label> Email</mat-label>
+            <input
+              formControlName="email"
+              type="email"
+              matInput
+              placeholder="Enter your Email"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
 
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label> Email</mat-label>
-                  <input formControlName="email"  type="email" matInput placeholder="Enter your Email" >
-                  <mat-icon matSuffix>email</mat-icon>
-   
-                </mat-form-field>
-               
-                <mat-error
-                *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('email','email')">
-                Enter a valid email address
-              </mat-error>
-                <mat-error
-                *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
-                Email is required
-              </mat-error>
+          <mat-error
+            *ngIf="
+              signupForm.controls['email'].dirty &&
+              signupForm.hasError('email', 'email')
+            "
+          >
+            Enter a valid email address
+          </mat-error>
+          <mat-error
+            *ngIf="
+              signupForm.controls['email'].dirty &&
+              signupForm.hasError('required', 'email')
+            "
+          >
+            Email is required
+          </mat-error>
 
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Mobile</mat-label>
-                <input formControlName="phone" type="tel" matInput placeholder="Enter your mobile number">
-                <mat-icon matSuffix>call</mat-icon>
-              </mat-form-field>
-              <mat-error
-              *ngIf="signupForm.controls['phone'].dirty && signupForm.hasError('required','phone')">
-              Phone number is required
-            </mat-error>       
-                <mat-error
-            *ngIf="signupForm.controls['phone'].dirty && signupForm.hasError('pattern','phone')">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Mobile</mat-label>
+            <input
+              formControlName="phone"
+              type="tel"
+              matInput
+              placeholder="Enter your mobile number"
+            />
+            <mat-icon matSuffix>call</mat-icon>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              signupForm.controls['phone'].dirty &&
+              signupForm.hasError('required', 'phone')
+            "
+          >
+            Phone number is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              signupForm.controls['phone'].dirty &&
+              signupForm.hasError('pattern', 'phone')
+            "
+          >
             Enter valid number
           </mat-error>
 
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input formControlName="password" type="password" matInput placeholder="Enter your Password">
-                    <mat-icon matSuffix>vpn_key</mat-icon>
-                  </mat-form-field>
-                  <mat-error
-                  *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">
-                  Password is required
-                </mat-error>
-                <mat-error
-                *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('pattern','password')">
-                 Minimum 8 characters, at least 1 uppercase, 1 lowercase
-               and 1 number and a special character
-              </mat-error>   
-                <button type="submit" mat-button  [disabled]="!signupForm.valid">Signup</button>
-              </form>
-            </mat-tab>
-          </mat-tab-group>
-          <!-- Signup for end here -->
-         
-    
-      </mat-card>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              formControlName="password"
+              type="password"
+              matInput
+              placeholder="Enter your Password"
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              signupForm.controls['password'].dirty &&
+              signupForm.hasError('required', 'password')
+            "
+          >
+            Password is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              signupForm.controls['password'].dirty &&
+              signupForm.hasError('pattern', 'password')
+            "
+          >
+            Minimum 8 characters, at least 1 uppercase, 1 lowercase and 1 number
+            and a special character
+          </mat-error>
+          <button type="submit" mat-button [disabled]="!signupForm.valid">
+            Signup
+          </button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+    <!-- Signup for end here -->
+  </mat-card>
 </div>

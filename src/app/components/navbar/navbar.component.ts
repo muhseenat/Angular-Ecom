@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,26 +10,18 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  @Input() deviceXs!: boolean;
   user: any;
-  wishlist_count!: number;
-  cart_count!: number;
-  constructor(private _snackBar: MatSnackBar, private api: ApiService, private route:Router, public cartApi:CartService) {}
-  ngOnInit(): void {
-    this.user = localStorage.getItem('user_token');
-    this.api.get_wishlist().subscribe((res) => {
-      console.log('data of wishlist header', res);
-      this.wishlist_count = res?.length;
-    });
-    // this.cartApi.get((res) => {
-    //   console.log('data of cart item', res);
-    //   this.cart_count = res?.length;
-    // });
-  }
+
+  constructor(
+    private _snackBar: MatSnackBar,
+    private route: Router,
+    public cartApi: CartService,
+    public wishlistApi: WishlistService
+  ) {}
+  ngOnInit(): void {}
   logout() {
     confirm('are you teally want to logout');
-    localStorage.removeItem('user_token');
-    localStorage.removeItem('user_id');
+
     this.route.navigate(['login']);
     this.openSnackBar('You are Logged Out', 'Ok');
   }

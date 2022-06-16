@@ -1,7 +1,7 @@
 <p>
   <mat-toolbar class="navbar" mat-elevation-z8>
     <button
-    routerLink="/home"
+      routerLink="/home"
       mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with menu icon"
@@ -9,7 +9,6 @@
       <mat-icon>shoppingbag</mat-icon>
     </button>
     <span>EKart</span>
-  
 
     <span class="example-spacer"></span>
 
@@ -19,7 +18,7 @@
       aria-label="Example icon-button with heart icon"
     >
       <mat-icon routerLink="/home/favorites">favorite</mat-icon>
-      <span>{{wishlist_count}}</span>
+      <span>{{ wishlistApi.count || "" }}</span>
     </button>
     <button
       mat-icon-button
@@ -27,8 +26,7 @@
       aria-label="Example icon-button with shopping cart icon"
     >
       <mat-icon routerLink="/home/cart">shopping_cart</mat-icon>
-      <span>{{cartApi.count || " "}}</span>
-
+      <span>{{ cartApi.count || " " }}</span>
     </button>
     <button
       mat-icon-button
