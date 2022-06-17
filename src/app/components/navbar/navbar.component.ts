@@ -10,7 +10,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  user: any;
+  user:any;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -18,10 +18,14 @@ export class NavbarComponent implements OnInit {
     public cartApi: CartService,
     public wishlistApi: WishlistService
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user=localStorage.getItem('user_token')
+  }
   logout() {
     confirm('are you teally want to logout');
-
+    localStorage.clear();
+   this.cartApi.clear();
+   this.wishlistApi.clear();
     this.route.navigate(['login']);
     this.openSnackBar('You are Logged Out', 'Ok');
   }

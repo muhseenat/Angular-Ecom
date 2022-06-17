@@ -27,9 +27,7 @@
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef>Quantity</th>
         <td class="quantity" mat-cell *matCellDef="let dataSource">
-          <mat-icon class="change">remove</mat-icon>
           <span>{{ dataSource?.quantity }}</span>
-          <mat-icon fontSizeSmall class="change">add</mat-icon>
         </td>
       </ng-container>
       <!-- Price Column -->
@@ -42,7 +40,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let dataSource">
-            <mat-icon (click)="removeCart(dataSource?.product?._id)"
+            <mat-icon  class="action"  (click)="removeCart(dataSource?.product?._id)"
               >highlight_off</mat-icon
             >
           </td>

@@ -34,6 +34,7 @@ import { HomeLayoutComponent } from './layout/home-layout/home-layout.component'
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { HomeComponent } from './components/home/home.component';
 import { SetHeaderInterceptor } from './interceptors/set-header.interceptor';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 declare module '@angular/core' {
   interface ModuleWithProviders<T = any> {
@@ -57,6 +58,7 @@ declare module '@angular/core' {
     HomeLayoutComponent,
     LoginLayoutComponent,
     HomeComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,

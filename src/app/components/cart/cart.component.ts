@@ -45,6 +45,11 @@ export class CartComponent implements AfterViewInit, OnInit {
     this.cartApi.removeCart(id);
   }
 
+
+  changePrice(){
+    // hyxuDGnkMKzBfx9ePz8t
+  }
+
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
   }

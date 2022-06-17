@@ -9,12 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
   slides = [
-    {'image': '../../../assets/images (1).jpg'},
-    {'image': '../../../assets/images (2).jpg'}, 
-    {'image': '../../../assets/images (3).jpg'}, 
-    {'image': '../../../assets/images (4).jpg'},
-    {'image': '../../../assets/images (5).jpg'},
-    {'image': '../../../assets/images.jpg'},
+  
+    {'image': '../../../assets/1000_F_252680454_05E8u8lQijA3nn4MloY0sDn1tVDn9YWz.jpg'}, 
+    {'image': '../../../assets/creative-vector-illustration-big-sale-260nw-1364474708.webp'}, 
+    {'image': '../../../assets/cae72ce86998abcadd5051acd91a696b.jpg'},
+   
   ];
   constructor() { }
 

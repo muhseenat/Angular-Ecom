@@ -75,4 +75,11 @@ export class WishlistService {
         }
       );
   }
+
+clear(){
+  this.wishlist=[]
+  this.count=0;
+}
+
+
 }

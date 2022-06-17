@@ -20,6 +20,8 @@
   &-card {
     max-width: 320px;
     min-width: 320px;
+    max-height: 400px;
+    min-height: 400px;
     margin: 10px 5px 5px 10px;
   }
 }
@@ -42,4 +44,12 @@ object-fit: contain;
 }
 span{
   color: black;
+}
+h3,p{
+  font-weight: bold;
+}
+
+.fav{
+  color: hsl(4, 94%, 49%) !important;
+
 }

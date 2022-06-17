@@ -17,6 +17,13 @@
         {{ product?.description }}
       </mat-card-content>
 
+      <div class="quantity" fxLayout="row"   fxLayoutAlign="space-around center">
+        <button  class="icon" [disabled]="quantity==1" (click)="change(false)">-</button>
+        <h3 >{{quantity}}</h3>
+        <button class="icon" (click)="change(true)"> +</button>
+
+      </div>
+     
       <div class="star">
         <mat-icon *ngFor="let i of [].constructor(product?.numReviews)"
           >star</mat-icon
@@ -25,13 +32,13 @@
       </div>
       <mat-card-actions>
         <div fxLayoutAlign="space-between center">
-          <button mat-button (click)="cartApi.addToCart(product?._id)">
+          <button mat-button (click)="cartApi.addToCart(product?._id,quantity)">
             ADD TO CART
           </button>
           <button
             mat-button
             class="favorite"
-            (click)="api.add_to_wishlist(product?._id)"
+            (click)="wishlistApi.add_to_wishlist(product?._id)"
           >
             ADD TO FAVORITE
           </button>

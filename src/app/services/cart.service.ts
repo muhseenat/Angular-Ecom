@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CartService {
   public count!: any;
   public cart: any;
-
+  public user:any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -42,10 +42,10 @@ export class CartService {
   }
 
   //ADD TO CART
-  addToCart(id: any) {
-    let user = localStorage.getItem('user_token');
-    if (user) {
-      let data = { productId: id, quantity: 1 };
+  addToCart(id:string,quantity:number) { 
+  this.user = localStorage.getItem('user_token');
+    if (this.user) {
+      let data = { productId: id, quantity};
       return this.http.post<any>(`${env.BASE_URL}/users/cart`, data).subscribe(
         (res) => {
           this.openSnackBar('Item Added to Cart', 'Ok');
@@ -73,5 +73,10 @@ export class CartService {
           this.openSnackBar(err.error.message, 'Ok');
         }
       );
+  }
+
+  clear(){
+    this.count = 0;
+    this.cart = '';
   }
 }
