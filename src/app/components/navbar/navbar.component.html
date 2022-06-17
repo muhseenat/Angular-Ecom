@@ -35,7 +35,7 @@
       aria-label="Example icon-button with share icon"
     >
       <mat-icon *ngSwitchCase="null" routerLink="/login">login</mat-icon>
-      <mat-icon *ngSwitchDefault (click)="logout()">exit_to_app</mat-icon>
+      <mat-icon *ngSwitchDefault (click)="api.logout()">exit_to_app</mat-icon>
     </button>
   </mat-toolbar>
 </p>

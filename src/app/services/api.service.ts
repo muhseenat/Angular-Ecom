@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from 'src/environments/environment';
-import { map, Observable } from 'rxjs';
+import { map} from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CartService } from './cart.service';
+import { WishlistService } from './wishlist.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  cartItems!: Observable<Array<any>>;
+  public user=localStorage.getItem('user_token');
   constructor(
     private http: HttpClient,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private cartApi:CartService,
+    private wishlistApi:WishlistService,
   ) {}
 
   //SNACKBAR
@@ -69,4 +73,14 @@ export class ApiService {
       }
     );
   }
+
+  logout(){
+      confirm('are you teally want to logout');
+      localStorage.clear();
+     this.cartApi.clear();
+     this.wishlistApi.clear();
+      this.router.navigate(['login']);
+      this.openSnackBar('You are Logged Out', 'Ok');
+    }
+  
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 import { CartService } from 'src/app/services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 
@@ -13,23 +14,13 @@ export class NavbarComponent implements OnInit {
   user:any;
 
   constructor(
-    private _snackBar: MatSnackBar,
-    private route: Router,
-    public cartApi: CartService,
-    public wishlistApi: WishlistService
+  public api:ApiService,
+  public cartApi:CartService,
+  public wishlistApi:WishlistService
   ) {}
   ngOnInit(): void {
-    this.user=localStorage.getItem('user_token')
+    this.user=this.api.user;
   }
-  logout() {
-    confirm('are you teally want to logout');
-    localStorage.clear();
-   this.cartApi.clear();
-   this.wishlistApi.clear();
-    this.route.navigate(['login']);
-    this.openSnackBar('You are Logged Out', 'Ok');
-  }
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
+
+
 }
