@@ -33,13 +33,10 @@ export class SingleProductComponent implements OnInit {
   }
 
   change(argu:any){
-    console.log('function calling');
     
     if(this.quantity>=1){
-      console.log('this happening');
       
       this.quantity=argu?this.quantity+1:this.quantity-1
-      console.log(this.quantity);
       
     }
   }

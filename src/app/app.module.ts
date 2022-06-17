@@ -35,6 +35,7 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { HomeComponent } from './components/home/home.component';
 import { SetHeaderInterceptor } from './interceptors/set-header.interceptor';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 declare module '@angular/core' {
   interface ModuleWithProviders<T = any> {
@@ -82,6 +83,7 @@ declare module '@angular/core' {
     MatTableModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatExpansionModule,
   ],
   providers: [
     {

@@ -1,6 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-5 ">
   <mat-card
-    class="example-card"
+    class="example-card bg-white p-3 rounded shadow-24"
     fxFlexFill
     fxLayout="row"
     fxLayout.xs="column"
@@ -30,7 +30,7 @@
         >
         <span>({{ product?.numReviews }}/5)</span>
       </div>
-      <mat-card-actions>
+      <mat-card-actions class="mt-3">
         <div fxLayoutAlign="space-between center">
           <button mat-button (click)="cartApi.addToCart(product?._id,quantity)">
             ADD TO CART
@@ -44,6 +44,9 @@
           </button>
         </div>
       </mat-card-actions>
+      <div class="reviews mt-4">
+        <app-reviews [reviews]="product?.reviews.slice(0,3)"></app-reviews>
+      </div>
     </div>
   </mat-card>
 

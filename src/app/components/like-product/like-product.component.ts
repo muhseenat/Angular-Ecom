@@ -23,7 +23,7 @@ export class LikeProductComponent implements OnInit {
   goto(id:any){
     console.log('this is id ');
     
-    this.router.navigate([`/product/${id}`])
+    this.router.navigate([`home/product/${id}`])
   }
 
 }
