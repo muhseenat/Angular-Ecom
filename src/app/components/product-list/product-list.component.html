@@ -37,10 +37,10 @@
           >{{ action_to_do }}</mat-icon
         >
         <mat-icon 
+        [style.color]="wishlistApi.wishlist._id==i._id? 'red' : null"
           *ngSwitchDefault
           (click)="wishlistApi.add_to_wishlist(i?._id)"
-          >{{ action_to_do }}</mat-icon
-        >
+          >{{ action_to_do }}</mat-icon >
         <mat-icon (click)="cartApi.addToCart(i?._id,1)">shopping_cart</mat-icon>
       </div>
     </mat-card-actions>
