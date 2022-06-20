@@ -27,6 +27,7 @@ const routes: Routes = [
         resolve: {
           data: ProductResolver,
         },
+        canActivate:[AuthGuard],
       },
       {
         path: 'product/:id',

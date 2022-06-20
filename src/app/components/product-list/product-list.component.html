@@ -22,13 +22,18 @@
       </div>
     </mat-card-content>
 
-    <div class="star">
+    <div class="star" *ngIf="i?.numReviews">
       <mat-icon class="mt-1" *ngFor="let i of [].constructor(i?.numReviews)"
         >star</mat-icon
       >
       <span>({{ i?.numReviews }}/5)</span>
     </div>
-
+    <div *ngIf="!i?.numReviews" style="font-size: 20px ;">
+      <mat-icon class="mt-1" *ngFor="let i of [].constructor(1)"
+        >star_border</mat-icon
+      >
+      <span>(0/5)</span>
+    </div>
     <mat-card-actions>
       <div [ngSwitch]="remove" fxLayout="row" fxLayoutAlign="space-between end">
         <mat-icon
@@ -44,9 +49,5 @@
         <mat-icon (click)="cartApi.addToCart(i?._id,1)">shopping_cart</mat-icon>
       </div>
     </mat-card-actions>
-
-  <div class="reviews">
-   
-  </div>
   </mat-card>
 </div>
